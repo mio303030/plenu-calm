@@ -246,3 +246,14 @@
     display: none;
   }
 }
+
+/* ---------- ⑧ FAQの開閉 ----------
+   高さのアニメーションは faq.js（Web Animations API）で付ける。
+   動いている間だけ1行表示（行数制限）を外し、枠からはみ出す文字を隠す
+   → 閉じる途中でも文章が途切れず、下へ自然に収納されていく */
+.faq__item.is-animating .faq__text {
+  display: block;
+  overflow: hidden;
+  -webkit-line-clamp: unset;
+  line-clamp: none;
+}
