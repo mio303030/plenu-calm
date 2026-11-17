@@ -138,25 +138,54 @@
   }
 }
 
-/* ---------- CTAボタンのホバー ---------- */
+/* ---------- ⑥ CTAボタン ----------
+   通常時は元のデザインのまま（影なし・緑）。
+   ホバー時だけ：背景色がなめらかに明るい緑へ／3px浮き上がる／影が「近い影＋遠い影」に変化／
+   ボタンの中を光がすっと横切る。
+   マウス操作ができる画面幅768px以上の環境だけで有効（スマホ・タッチ端末では無効） */
 .cta__btn {
+  overflow: hidden;
+  isolation: isolate; /* 光（::before）を文字の後ろ・背景の前に置くため */
+  box-shadow: 0 0 0 rgba(32, 127, 59, 0);
   transition:
-    background-color 0.3s ease,
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
+    background-color 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-@media (hover: hover) {
-  .cta__btn:hover {
+/* 横切る光（通常時はボタンの左外に隠れている） */
+.cta__btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(105deg, transparent 30%, rgba(255, 255, 255, 0.28) 50%, transparent 70%);
+  translate: -110% 0;
+  pointer-events: none;
+}
+
+@media (hover: hover) and (min-width: 768px) {
+  .cta__btn:hover,
+  .cta__btn:focus-visible {
     background-color: var(--color-green-light);
-    box-shadow: 0 6px 16px rgba(32, 127, 59, 0.3);
-    transform: translateY(-2px);
+    box-shadow:
+      0 4px 8px rgba(32, 127, 59, 0.18),
+      0 12px 24px rgba(32, 127, 59, 0.22);
+    transform: translateY(-3px);
   }
-}
 
-.cta__btn:active {
-  box-shadow: 0 2px 6px rgba(32, 127, 59, 0.3);
-  transform: translateY(0);
+  .cta__btn:hover::before,
+  .cta__btn:focus-visible::before {
+    translate: 110% 0;
+    transition: translate 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* 押した瞬間は沈み込む */
+  .cta__btn:active {
+    box-shadow: 0 2px 6px rgba(32, 127, 59, 0.25);
+    transform: translateY(-1px);
+    transition-duration: 0.1s;
+  }
 }
 
 .cta__btn:focus-visible {
@@ -164,9 +193,15 @@
   outline-offset: 3px;
 }
 
+/* 動きを減らす設定：色と影の変化だけ残し、浮き上がり・光は付けない */
 @media (prefers-reduced-motion: reduce) {
   .cta__btn:hover,
+  .cta__btn:focus-visible,
   .cta__btn:active {
     transform: none;
+  }
+
+  .cta__btn::before {
+    display: none;
   }
 }
