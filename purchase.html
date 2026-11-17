@@ -6,6 +6,8 @@
   <title>ご購入はこちら | Plenu Calm</title>
   <!-- ポートフォリオ用の再現ページのため検索エンジンに登録しない -->
   <meta name="robots" content="noindex" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,900&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" />
@@ -17,12 +19,18 @@
       root.classList.add('js');
       // 万一メインのJSが読み込めなくても、3秒後には必ず表示する
       setTimeout(function () { root.classList.add('is-ready'); }, 3000);
+      // スマホ判定はCSSと同じメディアクエリで行い（スクロールバーの幅の扱いを揃える）、
+      // 拡大率はスクロールバーを除いた実際の表示幅から計算する
+      var sp = matchMedia('(max-width: 767px)');
       function fit() {
         var w = root.clientWidth;
-        root.style.setProperty('--zoom', w < 768 ? w / 320 : w < 980 ? w / 980 : 1);
+        root.style.setProperty('--zoom', sp.matches ? w / 320 : Math.min(1, w / 980));
       }
       fit();
       addEventListener('resize', fit);
+      // スクロールバーが後から表示された時も（表示幅が変わるため）計算し直す
+      addEventListener('DOMContentLoaded', fit);
+      if (window.ResizeObserver) new ResizeObserver(fit).observe(root);
     })();
   </script>
   <script type="module" src="/src/purchase.js"></script>

@@ -33,6 +33,8 @@ export function initFaq() {
       const isOpen = item.classList.toggle('is-open');
       button.setAttribute('aria-expanded', String(isOpen));
       button.textContent = isOpen ? 'とじる' : '▽';
+      // 読み上げ用の名前（見た目の「▽」だけでは何のボタンか伝わらないため）
+      button.setAttribute('aria-label', isOpen ? '回答を閉じる' : '回答を開く');
 
       if (!animate) return;
 

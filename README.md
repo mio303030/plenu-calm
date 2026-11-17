@@ -81,3 +81,36 @@ src/styles/
 ## 購入フォームについて
 
 ポートフォリオ用のため送信機能はありません。`action` 属性と `name` 属性を持たせず、`submit` イベントも必ず止めているため、入力内容は外部に送られません。
+
+## 公開前のライセンス確認
+
+### 画像（要確認）
+`public/images/` の画像は、元のWixサイトで使われている素材をそのまま書き出したものです。
+Wixの素材ライブラリの画像には「Wixで作ったサイト内でのみ利用可」のものがあるため、
+公開前に各画像の入手元と利用条件を確認し、「入手元」「確認」欄を埋めてください。
+
+| ファイル | 使用箇所 | 入手元 | 確認 |
+|---|---|---|---|
+| hero-bg.webp | ファーストビュー背景（葉） | | ☐ |
+| bottle.webp | 商品ボトル（ファーストビュー・CTA×3） | | ☐ |
+| wave.webp | 波線（ファーストビュー・理由・ブランド） | | ☐ |
+| white-bg.webp | 紙の質感の背景 | | ☐ |
+| leaves-bg.webp | CTA背景 | | ☐ |
+| washing-machine.webp | 洗濯機の写真 | | ☐ |
+| thinking-woman.webp | 「どうして無添加なのに」のイラスト | | ☐ |
+| speech-bubble.webp | 吹き出し | | ☐ |
+| reason01-basket.webp / reason01-laundry.webp / reason01-leaf-glass.webp | 理由01の写真 | | ☐ |
+| reason02-shirts.webp | 理由02の写真 | | ☐ |
+| reason03.webp | 理由03の写真（PCのみ） | | ☐ |
+| icon-baby / icon-linen / icon-fashion / icon-bedding / icon-underwear.webp | おすすめのアイコン | | ☐ |
+| voice-1〜4.webp | 利用者の声の写真 | | ☐ |
+
+`favicon.svg` / `apple-touch-icon.png` は今回新しく作ったもの（緑の角丸に「P」）です。
+
+### フォント・ライブラリ（確認済み）
+- Google Fonts（Bodoni Moda / Zen Antique / Zen Kaku Gothic New / Luxurious Script / Kodchasan / K2D）：SIL Open Font License。商用利用可
+- GSAP 3.15.0：3.13以降は商用利用も含め無料（GSAP Standard License）
+
+### 公開後に追加するもの
+- `og:image`（SNS共有時の画像）：絶対URLが必要なため、公開URLが決まってから `index.html` に追加する
+- 検索エンジンに登録したい場合は、`index.html` と `purchase.html` の `<meta name="robots" content="noindex" />` を削除する
