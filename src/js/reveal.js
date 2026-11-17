@@ -7,11 +7,10 @@
  */
 const TARGETS = [
   '.concept__p7', // コンセプトの本文：自然なフェードイン
-  '.machine__img',
   '.cta__tagline', '.cta__logo', '.cta__kana', '.cta__btn',
   '.question__woman', '.question__bubble', '.question__text',
   '.reason-num', '.reason-line', '.reason-title', '.reason-body',
-  '.reasons__basket', '.reasons__laundry', '.reasons__leaf', '.reasons__shirts', '.reasons__img3', '.reasons__wave',
+  '.reasons__wave',
   '.section-title', '.feature', '.rec',
   '.brand__box', '.brand__circle', '.brand__q', '.brand__heading > span', '.brand__marker',
   '.brand__lead', '.brand__dots', '.brand__wave', '.brand__meaning-title', '.brand__term', '.brand__meaning',
@@ -22,6 +21,13 @@ const TARGETS = [
 // テキストリビール：行の枠（.tx-line）ごとに、中のテキストを下からせり上げる
 // ※枠の外に隠れた要素は IntersectionObserver で「見えない」と判定されるため、枠の方を監視する
 const LINE_TARGETS = ['.concept .tx-line'];
+
+// 写真のマスクリビール：マスクが開くように現れ、写真自体はわずかに縮小する
+// 登場方向は画像の位置で決める（左寄り→左から / 右寄り→右から / 中央→前の写真と逆向き）
+const MASK_TARGETS = [
+  '.machine__img',
+  '.reasons__basket', '.reasons__laundry', '.reasons__leaf', '.reasons__shirts', '.reasons__img3',
+];
 
 // 商品画像：控えめなスライドアップ
 const PRODUCT_TARGETS = ['.cta__bottle'];
@@ -35,9 +41,11 @@ export function initReveal() {
 
   const product = document.querySelectorAll(PRODUCT_TARGETS.join(','));
   const lines = document.querySelectorAll(LINE_TARGETS.join(','));
-  const elements = [...document.querySelectorAll(TARGETS.join(',')), ...product, ...lines];
+  const masks = [...document.querySelectorAll(MASK_TARGETS.join(','))];
+  const elements = [...document.querySelectorAll(TARGETS.join(',')), ...product, ...lines, ...masks];
   product.forEach((el) => el.classList.add('reveal--up'));
   lines.forEach((el) => el.classList.add('reveal--line'));
+  masks.forEach((el) => el.classList.add('reveal--mask'));
 
   const pending = new Set(elements);
 
@@ -46,11 +54,11 @@ export function initReveal() {
     el.style.setProperty('--reveal-delay', `${delay}s`);
     el.classList.add('is-visible');
     observer.unobserve(el);
-    // アニメーション終了後に後片付け（最長1.2秒＋遅延）
+    // アニメーション終了後に後片付け（最長1.5秒＋遅延）
     setTimeout(() => {
-      el.classList.remove('reveal', 'reveal--up', 'reveal--line', 'is-visible');
+      el.classList.remove('reveal', 'reveal--up', 'reveal--line', 'reveal--mask', 'from-left', 'from-right', 'is-visible');
       el.style.removeProperty('--reveal-delay');
-    }, (delay + 1.4) * 1000);
+    }, (delay + 1.8) * 1000);
   };
 
   const observer = new IntersectionObserver(
@@ -70,6 +78,28 @@ export function initReveal() {
     el.classList.add('reveal');
     observer.observe(el);
   });
+
+  // 写真の登場方向（PCとスマホで配置が変わるため、画面幅の切り替え時にも決め直す）
+  const setMaskDirections = () => {
+    let prev = 'from-right';
+    masks
+      .filter((el) => pending.has(el) && el.getClientRects().length)
+      .sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top)
+      .forEach((el) => {
+        const r = el.getBoundingClientRect();
+        const box = el.closest('.section').getBoundingClientRect();
+        const center = (r.left + r.width / 2 - box.left) / box.width;
+        let dir;
+        if (center < 0.42) dir = 'from-left';
+        else if (center > 0.58) dir = 'from-right';
+        else dir = prev === 'from-left' ? 'from-right' : 'from-left';
+        el.classList.remove('from-left', 'from-right');
+        el.classList.add(dir);
+        prev = dir;
+      });
+  };
+  setMaskDirections();
+  window.matchMedia('(min-width: 768px)').addEventListener('change', setMaskDirections);
 
   // 素早いスクロールやページ内リンクで一気に通り過ぎた要素は、
   // IntersectionObserver に通知されないことがあるため、スクロール時にも確認する

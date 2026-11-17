@@ -115,6 +115,31 @@
     opacity: 1;
     translate: none;
   }
+
+  /* 写真のマスクリビール（③）
+     - clip-path で写真を端から開いていく（方向は reveal.js が from-left / from-right を付与）
+     - 同時に scale 1.12 → 1 でわずかに縮小
+     - 拡大中も四辺を6%ずつ切り抜いておくことで、表示範囲が元の枠より外に出ない
+       （1.12倍のとき 6% × 1.12 ≒ 枠ぴったり）→ 周りの文章と重ならない
+     - 切り抜きは縮小より後に終わらせる（先に終わると一瞬だけ枠からはみ出すため） */
+  .js .reveal--mask {
+    opacity: 1;
+    translate: none;
+    scale: 1.12;
+    clip-path: inset(6% 6% 6% 100%);
+    transition:
+      clip-path 1.4s var(--ease-out) var(--reveal-delay, 0s),
+      scale 1.2s var(--ease-out) var(--reveal-delay, 0s);
+  }
+
+  .js .reveal--mask.from-left {
+    clip-path: inset(6% 100% 6% 6%);
+  }
+
+  .js .reveal--mask.is-visible {
+    scale: 1;
+    clip-path: inset(0);
+  }
 }
 
 /* ---------- CTAボタンのホバー ---------- */
