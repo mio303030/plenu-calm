@@ -9,6 +9,8 @@
  * - 前景：理由01の葉（グラスの写真）
  *   → 上下にPC 24px・スマホ 14pxだけ動かす（周りの文章との間隔より十分小さい）
  *
+ * - ⑤ 商品ボトル：CTAセクションの通過に合わせて浮かび上がる（下の BOTTLES 参照）
+ *
  * 「視差効果を減らす」設定の環境では何もしない。
  * JavaScriptが無効の時はCSS変数が未設定のままなので、元の表示になる。
  */
@@ -66,6 +68,39 @@ export function initParallax() {
           scrollTrigger: { trigger: leaf, start: 'top bottom', end: 'bottom top', scrub: SMOOTH },
         },
       );
+    });
+
+    // ⑤ 商品ボトル（3か所のCTA）：スクロールに合わせてゆっくり浮かび上がる
+    // セクションが画面に入ってから出るまでを 0→1 として、
+    //   0 → finish : 下から浮かび上がる（わずかに傾き・縮小 → まっすぐ・等倍）
+    //   finish → 0.5 : 元の状態で静止（0.5 = セクションが画面中央 → 元のデザインと同じ見た目）
+    //   0.5 → 1 : さらにゆっくり上へ（ごくわずかに逆へ傾き、少しだけ拡大）
+    // 3か所で「浮かび上がり終わる位置」「傾く向き」「上昇量」を変えて、同じ動きの繰り返しに見せない
+    const BOTTLES = [
+      { finish: 0.38, tilt: -3, rise: 70 },
+      { finish: 0.44, tilt: 3, rise: 56 },
+      { finish: 0.5, tilt: -2, rise: 84 },
+    ];
+    // スマホはボトルのすぐ下（6〜15px）に購入ボタンがあるため、下へは一切ずらさない。
+    // 代わりにボトルの底を支点に、小さい状態から上へ伸びるように浮かび上がらせる
+    const sp = context.conditions.sp;
+    gsap.utils.toArray('.cta').forEach((section, i) => {
+      const bottle = section.querySelector('.cta__bottle');
+      if (!bottle) return;
+      const { finish, tilt, rise } = BOTTLES[i % BOTTLES.length];
+      const from = sp
+        ? { y: 0, rotation: tilt / 2, scale: 0.9, opacity: 0, transformOrigin: '50% 100%' }
+        : { y: rise, rotation: tilt, scale: 0.94, opacity: 0, transformOrigin: '50% 50%' };
+      gsap
+        .timeline({
+          scrollTrigger: { trigger: section, start: 'top bottom', end: 'bottom top', scrub: 1 },
+        })
+        .fromTo(bottle, from, { y: 0, rotation: 0, scale: 1, opacity: 1, ease: 'power2.out', duration: finish }, 0)
+        .to(
+          bottle,
+          { y: sp ? -12 : -22, rotation: -tilt / (sp ? 4 : 2), scale: 1.02, ease: 'none', duration: 0.5 },
+          0.5,
+        );
     });
   });
 }

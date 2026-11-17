@@ -29,8 +29,7 @@ const MASK_TARGETS = [
   '.reasons__basket', '.reasons__laundry', '.reasons__leaf', '.reasons__shirts', '.reasons__img3',
 ];
 
-// 商品画像：控えめなスライドアップ
-const PRODUCT_TARGETS = ['.cta__bottle'];
+// ※CTAの商品ボトルは ⑤ でスクロール連動にしたため parallax.js で扱う
 
 const STAGGER = 0.12; // 秒
 const MAX_DELAY = 0.48;
@@ -39,11 +38,9 @@ export function initReveal() {
   if (!('IntersectionObserver' in window)) return;
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  const product = document.querySelectorAll(PRODUCT_TARGETS.join(','));
   const lines = document.querySelectorAll(LINE_TARGETS.join(','));
   const masks = [...document.querySelectorAll(MASK_TARGETS.join(','))];
-  const elements = [...document.querySelectorAll(TARGETS.join(',')), ...product, ...lines, ...masks];
-  product.forEach((el) => el.classList.add('reveal--up'));
+  const elements = [...document.querySelectorAll(TARGETS.join(',')), ...lines, ...masks];
   lines.forEach((el) => el.classList.add('reveal--line'));
   masks.forEach((el) => el.classList.add('reveal--mask'));
 
@@ -56,7 +53,7 @@ export function initReveal() {
     observer.unobserve(el);
     // アニメーション終了後に後片付け（最長1.5秒＋遅延）
     setTimeout(() => {
-      el.classList.remove('reveal', 'reveal--up', 'reveal--line', 'reveal--mask', 'from-left', 'from-right', 'is-visible');
+      el.classList.remove('reveal', 'reveal--line', 'reveal--mask', 'from-left', 'from-right', 'is-visible');
       el.style.removeProperty('--reveal-delay');
     }, (delay + 1.8) * 1000);
   };
