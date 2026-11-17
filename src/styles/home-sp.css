@@ -15,7 +15,7 @@
   .hero::before,
   .hero::after { height: 293px; }
 
-  .hero::after { background-size: cover; background-position: center; }
+  .hero::after { background-size: cover; background-position: center calc(50% - var(--hero-py, 0%)); }
 
   /* 8%の白いベール（Wixのモバイル版にある四角） */
   .hero .stage::before {

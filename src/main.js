@@ -6,8 +6,10 @@ import './styles/animation.css';
 import { initMenu } from './js/menu.js';
 import { initFaq } from './js/faq.js';
 import { initReveal, startHero } from './js/reveal.js';
+import { initParallax } from './js/parallax.js';
 
 initMenu();
 initFaq();
 initReveal();
+initParallax();
 startHero();

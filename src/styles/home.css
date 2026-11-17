@@ -42,6 +42,8 @@
   height: 453px;
   /* Wixでは 幅100% × 高さ800px の枠に cover で敷かれ、ヒーロー部分だけが見えている */
   background: url('/images/hero-bg.webp') center 45% / 100% auto no-repeat;
+  /* ④パララックス：--hero-py をJS（parallax.js）が 0%→10% に動かす。未設定時は元の位置 */
+  background-position: center calc(45% - var(--hero-py, 0%));
   opacity: 0.05;
 }
 
@@ -182,6 +184,8 @@
 .cta {
   height: 518px;
   background: url('/images/leaves-bg.webp') center / cover no-repeat;
+  /* ④パララックス：--cta-py をJS が 50%→-50% に動かす（画像のはみ出し分の中だけで移動）。未設定時は中央 */
+  background-position: center calc(50% + var(--cta-py, 0%));
 }
 
 .cta__veil {
