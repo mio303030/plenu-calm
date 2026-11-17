@@ -14,7 +14,7 @@ const TARGETS = [
   '.section-title', '.feature', '.rec',
   '.brand__box', '.brand__circle', '.brand__q', '.brand__heading > span', '.brand__marker',
   '.brand__lead', '.brand__dots', '.brand__wave', '.brand__meaning-title', '.brand__term', '.brand__meaning',
-  '.voices__title', '.voices__bg', '.voice',
+  '.voices__title', '.voices__bg',
   '.faq__item',
 ];
 
@@ -29,6 +29,11 @@ const MASK_TARGETS = [
   '.reasons__basket', '.reasons__laundry', '.reasons__leaf', '.reasons__shirts', '.reasons__img3',
 ];
 
+// ⑦ 利用者の声のカード：PCは左列→左から／右列→右から、スマホ（1列）は下からスライドイン
+// カード同士は通常より大きな間隔（CARD_STAGGER）で1枚ずつ現れる
+const CARD_TARGETS = ['.voice'];
+const CARD_STAGGER = 0.2; // 秒
+
 // ※CTAの商品ボトルは ⑤ でスクロール連動にしたため parallax.js で扱う
 
 const STAGGER = 0.12; // 秒
@@ -40,9 +45,12 @@ export function initReveal() {
 
   const lines = document.querySelectorAll(LINE_TARGETS.join(','));
   const masks = [...document.querySelectorAll(MASK_TARGETS.join(','))];
-  const elements = [...document.querySelectorAll(TARGETS.join(',')), ...lines, ...masks];
+  const cards = [...document.querySelectorAll(CARD_TARGETS.join(','))];
+  const elements = [...document.querySelectorAll(TARGETS.join(',')), ...lines, ...masks, ...cards];
   lines.forEach((el) => el.classList.add('reveal--line'));
   masks.forEach((el) => el.classList.add('reveal--mask'));
+  // 並び順の奇数枚目＝左列、偶数枚目＝右列（スマホではCSS側で下からに切り替える）
+  cards.forEach((el, i) => el.classList.add('reveal--card', i % 2 ? 'from-right' : 'from-left'));
 
   const pending = new Set(elements);
 
@@ -53,7 +61,7 @@ export function initReveal() {
     observer.unobserve(el);
     // アニメーション終了後に後片付け（最長1.5秒＋遅延）
     setTimeout(() => {
-      el.classList.remove('reveal', 'reveal--line', 'reveal--mask', 'from-left', 'from-right', 'is-visible');
+      el.classList.remove('reveal', 'reveal--line', 'reveal--mask', 'reveal--card', 'from-left', 'from-right', 'is-visible');
       el.style.removeProperty('--reveal-delay');
     }, (delay + 1.8) * 1000);
   };
@@ -66,7 +74,11 @@ export function initReveal() {
         // ページ上の並び順（上から）に表示する
         .sort((a, b) => (a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1));
 
-      visible.forEach((el, i) => show(el, Math.min(i * STAGGER, MAX_DELAY)));
+      let card = 0;
+      visible.forEach((el, i) => {
+        if (el.classList.contains('reveal--card')) show(el, card++ * CARD_STAGGER);
+        else show(el, Math.min(i * STAGGER, MAX_DELAY));
+      });
     },
     { rootMargin: '0px 0px -12% 0px' },
   );

@@ -136,6 +136,47 @@
     scale: 1;
     clip-path: inset(0);
   }
+
+  /* ⑦ 利用者の声のカード：左右から40pxスライドイン（スマホは下から）
+     セクションが overflow:hidden なので、移動中も横スクロールは出ない */
+  .js .reveal--card {
+    transition:
+      opacity 1s ease var(--reveal-delay, 0s),
+      translate 1.2s var(--ease-out) var(--reveal-delay, 0s);
+  }
+
+  .js .reveal--card.from-left  { translate: -40px 0; }
+  .js .reveal--card.from-right { translate: 40px 0; }
+
+  .js .reveal--card.is-visible { translate: none; }
+}
+
+@media (prefers-reduced-motion: no-preference) and (max-width: 767px) {
+  .js .reveal--card.from-left,
+  .js .reveal--card.from-right { translate: 0 32px; }
+
+  .js .reveal--card.is-visible { translate: none; }
+}
+
+/* ---------- ⑦ 利用者の声：PCでホバー時に少し浮き上がる ----------
+   通常時は元のデザインのまま（影なし）。マウス操作ができる画面幅768px以上だけで有効 */
+.voice {
+  transition:
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (hover: hover) and (min-width: 768px) {
+  .voice:hover {
+    transform: translateY(-6px);
+    box-shadow:
+      0 4px 10px rgba(0, 0, 0, 0.05),
+      0 16px 32px rgba(0, 0, 0, 0.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .voice:hover { transform: none; }
 }
 
 /* ---------- ⑥ CTAボタン ----------
