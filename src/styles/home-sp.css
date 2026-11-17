@@ -1,0 +1,444 @@
+/* =========================================================
+   Home（スマホ版：〜767px）
+   Wixのモバイル用レイアウト（320px幅）の実測値。
+   画面幅への拡大は body の zoom で行う（base.css 参照）
+   ========================================================= */
+@media (max-width: 767px) {
+  .section-title {
+    font-size: 24px;
+    line-height: 33.6px;
+  }
+
+  /* ---------- First view ---------- */
+  .hero { height: 316px; }
+
+  .hero::before,
+  .hero::after { height: 293px; }
+
+  .hero::after { background-size: cover; background-position: center; }
+
+  /* 8%の白いベール（Wixのモバイル版にある四角） */
+  .hero .stage::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 13px;
+    width: 276px;
+    height: 254px;
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .hero__catch {
+    left: 2px;
+    top: 23px;
+    width: 326px;
+    font-size: 18px;
+  }
+
+  .hero__tagline {
+    left: 2px;
+    top: 133.4px;
+    width: 256px;
+    font-size: 12px;
+  }
+
+  .hero__logo {
+    left: 13px;
+    top: 149.6px;
+    font-size: 36px;
+    line-height: 50.4px;
+  }
+
+  .hero__kana {
+    left: 68px;
+    top: 190.5px;
+    font-size: 12px;
+  }
+
+  .hero__bottle,
+  .cta__bottle {
+    width: 89px;
+    height: 166px;
+    object-fit: cover;
+  }
+
+  .hero__bottle { left: 224px; top: 84.4px; }
+
+  .hero__wave {
+    left: -6px;
+    top: 286.4px;
+    width: 326px;
+    height: 19px;
+  }
+
+  /* ---------- Concept ---------- */
+  .concept { height: 414px; }
+
+  .concept__text {
+    top: 20.4px;
+    width: 326px;
+  }
+
+  .concept .fs27 { font-size: 14px; }
+  .concept .fs30 { font-size: 15px; }
+
+  .concept__p1 { font-size: 15px; line-height: 37.05px; }
+  .concept__p2 { font-size: 12px; line-height: 29.64px; }
+  .concept__p3 { font-size: 15px; line-height: 37.05px; }
+  .concept__p4 { height: 35.4px; }
+  .concept__p5 { font-size: 14px; line-height: 26.6px; }
+  .concept__p6 { font-size: 15px; line-height: 28.5px; }
+  .concept__p7 { font-size: 15px; line-height: 37.05px; }
+
+  /* ---------- Washing machine ---------- */
+  .machine { height: 227px; }
+
+  .machine__img {
+    left: 20px;
+    top: 20px;
+    width: 280px;
+    height: 187px;
+  }
+
+  /* ---------- CTA ---------- */
+  .cta { height: 291px; }
+  .cta--1 { height: 294px; }
+
+  .cta__veil { left: 20px; top: 0; width: 280px; height: 291px; }
+  .cta--1 .cta__veil { top: 20px; height: 290px; }
+  .cta--3 .cta__veil { display: none; }
+
+  .cta__tagline {
+    width: 256px;
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  .cta__logo {
+    font-size: 36px;
+    line-height: 47.6px;
+  }
+
+  .cta__kana { font-size: 13px; }
+
+  .cta__btn {
+    width: 220.6px;
+    height: 31.5px;
+    font-size: 18px;
+  }
+
+  .cta--1 .cta__bottle  { left: 225px; top: 23.8px; }
+  .cta--1 .cta__tagline { left: 2px;   top: 83.8px; }
+  .cta--1 .cta__logo    { left: 18px;  top: 110.8px; }
+  .cta--1 .cta__kana    { left: 65px;  top: 150.4px; }
+  .cta--1 .cta__btn     { left: 49.7px; top: 204.7px; }
+
+  .cta--2 .cta__bottle  { left: 225px; top: 19.4px; }
+  .cta--2 .cta__tagline { left: 5px;   top: 80.4px; }
+  .cta--2 .cta__logo    { left: 17px;  top: 109.4px; }
+  .cta--2 .cta__kana    { left: 70px;  top: 149px; }
+  .cta--2 .cta__btn     { left: 50px;  top: 197.3px; }
+
+  .cta--3 .cta__bottle  { left: 225px; top: 18.5px; }
+  .cta--3 .cta__tagline { left: 6px;   top: 89.5px; }
+  .cta--3 .cta__logo    { left: 17px;  top: 116.5px; }
+  .cta--3 .cta__kana    { left: 69px;  top: 157.1px; }
+  .cta--3 .cta__btn     { left: 49.7px; top: 190.4px; }
+
+  /* ---------- Question ---------- */
+  .question { height: 199px; }
+
+  .question__woman {
+    left: 7px;
+    top: 60.8px;
+    width: 67px;
+    height: 114px;
+  }
+
+  .question__bubble {
+    left: 51px;
+    top: 16.8px;
+    width: 265px;
+    height: 73px;
+  }
+
+  .question__text {
+    left: 70px;
+    top: 45.8px;
+    width: 236px;
+    font-size: 10px;
+    line-height: 14px;
+  }
+
+  /* ---------- Reasons ---------- */
+  .reasons { height: 1780px; }
+
+  .reason-num {
+    width: auto;
+    font-size: 76px;
+    line-height: 53.2px;
+  }
+
+  .reason-body {
+    font-size: 14px;
+    line-height: 42px;
+  }
+
+  .reasons__num1   { left: 20px;  top: 19.8px; }
+  .reasons__line1  { left: 19px;  top: 79px; }
+  .reasons__title1 { left: 78px;  top: 45.8px; width: 218px; font-size: 23px; line-height: 32.2px; }
+  .reasons__body1  { left: 8px;   top: 107px;  width: 311px; }
+
+  .reasons__num2   { left: 12px;  top: 751px; }
+  .reasons__line2  { left: 12px;  top: 810.3px; }
+  .reasons__title2 { left: 74px;  top: 776px;  width: 280px; font-size: 22px; line-height: 30.8px; }
+  .reasons__body2  { left: 12px;  top: 833.3px; width: 300px; }
+
+  .reasons__num3   { left: 18px;  top: 1476.3px; }
+  .reasons__line3  { left: 18px;  top: 1538px; }
+  .reasons__title3 { left: 74px;  top: 1504.3px; width: 249px; font-size: 18px; line-height: 18px; }
+  .reasons__body3  { left: 8px;   top: 1551px; width: 311px; }
+
+  .reasons__leaf    { left: 55px; top: 312px;    width: 210px; height: 176px; }
+  .reasons__shirts  { left: 20px; top: 529px;    width: 280px; height: 187px; }
+  .reasons__basket  { left: 20px; top: 1031.3px; width: 280px; height: 186px; }
+  .reasons__laundry { left: 20px; top: 1274.3px; width: 280px; height: 190px; }
+  .reasons__wave    { left: 20px; top: 1735px;   width: 280px; height: 15px; }
+
+  /* ---------- Features ---------- */
+  .features { height: 949px; }
+
+  .features__title { left: 51px; top: 20px; }
+
+  .feature {
+    left: 20px;
+    width: 280px;
+    height: 280px;
+  }
+
+  .feature--1 { left: 20px; top: 76px; }
+  .feature--2 { left: 20px; top: 366px; height: 274px; }
+  .feature--3 { left: 20px; top: 649px; }
+
+  .feature__title {
+    top: 79.6px;
+    font-size: 31px;
+    line-height: 43.4px;
+  }
+
+  .feature--3 .feature__title { top: 81.2px; }
+
+  .feature--1 .feature__text { top: 142px; }
+  .feature--2 .feature__text { top: 154px; }
+  .feature--3 .feature__text { top: 146.6px; }
+
+  /* ---------- Recommend ---------- */
+  .recommend { height: 852px; }
+
+  .recommend__title {
+    left: 20px;
+    top: 20.2px;
+    width: 280px;
+    font-size: 23px;
+    line-height: 32.2px;
+    text-align: center;
+  }
+
+  .rec { left: 30px; width: 260px; }
+  .rec__icon,
+  .rec--5 .rec__icon { width: 100px; height: 100px; }
+  .rec__label { margin-top: 10px; }
+
+  .rec--1 { left: 30px; top: 74.4px; }
+  .rec--2 { left: 30px; top: 230px; }
+  .rec--3 { left: 30px; top: 385.6px; }
+  .rec--4 { left: 30px; top: 541.2px; }
+  .rec--5 { left: 30px; top: 696.8px; }
+
+  /* ---------- Brand ---------- */
+  .brand { height: 879px; }
+
+  .brand__box {
+    left: 20px;
+    top: 20px;
+    width: 280px;
+    height: 839px;
+  }
+
+  .brand__circle {
+    left: 35px;
+    top: 32px;
+    width: 35px;
+    height: 36px;
+  }
+
+  .brand__q {
+    left: 42px;
+    top: 26px;
+    width: 24px;
+    font-size: 33px;
+    line-height: 46.2px;
+  }
+
+  .brand__sub {
+    left: 101px;
+    top: 32px;
+    font-size: 12px;
+    line-height: 16.8px;
+  }
+
+  .brand__logo {
+    left: 75px;
+    top: 42.8px;
+    font-size: 27px;
+    line-height: 37.8px;
+  }
+
+  .brand__kana {
+    left: 107px;
+    top: 76.6px;
+    font-size: 9px;
+    line-height: 11.2px;
+    letter-spacing: 0.32px;
+  }
+
+  .brand__about {
+    left: 219px;
+    top: 72.6px;
+    font-size: 16px;
+    line-height: 22.4px;
+    letter-spacing: 0.32px;
+  }
+
+  .brand__marker--1 { left: 30px; top: 208.8px; width: 250px; height: 22px; }
+  .brand__marker--2 { left: 70px; top: 251.8px; width: 134px; height: 22px; }
+  .brand__marker--3 { left: 30px; top: 541.8px; width: 260px; height: 30px; }
+
+  .brand__lead {
+    left: 30px;
+    top: 107.3px; /* Wix実測108.8。行の位置を揃えるため1.5px補正 */
+    width: 260px;
+    font-size: 18px;
+    line-height: 42.12px;
+  }
+
+  .brand .fs17 { font-size: 12px; }
+  .brand .fs20 { font-size: 14px; }
+  .brand .fs23 { font-size: 16px; }
+
+  .brand__dots--1 { left: 143px; top: 402.8px; width: 142px; height: 6px; }
+  .brand__dots--2 { left: 79px;  top: 446.8px; width: 115px; height: 8px; }
+
+  .brand__wave {
+    left: 20px;
+    top: 474.8px;
+    width: 280px;
+    height: 30px;
+  }
+
+  .brand__meaning-title {
+    left: 30px;
+    top: 541.8px;
+    width: 260px;
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .brand__term { line-height: 36px; }
+  .brand__term--plenu { left: 35px; top: 587.8px; font-size: 18px; }
+  .brand__term--calm  { left: 35px; top: 682.8px; font-size: 19px; }
+
+  .brand__meaning {
+    left: 35px;
+    top: 611.8px;
+    width: 246px;
+    font-size: 11px;
+    line-height: 33px;
+  }
+
+  /* ---------- Voices ---------- */
+  .voices { height: 1378px; }
+
+  .voices__title {
+    left: 3px;
+    top: 23px;
+    width: 320px;
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .voices .fs38 { font-size: 21px; }
+
+  .voices__bg {
+    left: 20px;
+    top: 99px;
+    width: 280px;
+    height: 1228px;
+  }
+
+  .voice {
+    left: 30px;
+    width: 260px;
+    height: 253px;
+    padding: 9px 8px 0;
+  }
+
+  .voice--1 { left: 30px; top: 109px; }
+  .voice--2 { left: 30px; top: 409px; }
+  .voice--3 { left: 30px; top: 711px; }
+  .voice--4 { left: 30px; top: 1015px; }
+
+  .voice__img {
+    width: 244px;
+    height: 137px;
+  }
+
+  .voice__title {
+    margin-top: 14px;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 16px;
+  }
+
+  .voice__text {
+    margin-top: 16px;
+    font-size: 10px;
+    line-height: 12px;
+  }
+
+  /* ---------- FAQ ---------- */
+  .faq .stage { padding: 75.8px 0 20.2px; }
+
+  .faq__title { left: 85px; top: 20.1px; }
+
+  .faq__list {
+    left: 20px;
+    width: 280px;
+  }
+
+  .faq__item::before,
+  .faq__list::after {
+    height: 5px;
+    background-position: 0 0;
+  }
+
+  .faq__item::before { margin-bottom: 10px; }
+  .faq__item { padding-bottom: 10px; }
+
+  .faq__text,
+  .faq__toggle {
+    margin-left: 10px;
+  }
+
+  .faq__text {
+    width: 260px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .faq__item:nth-child(2) .faq__text,
+  .faq__item:nth-child(4) .faq__text,
+  .faq__item:nth-child(5) .faq__text {
+    width: 270px;
+  }
+}

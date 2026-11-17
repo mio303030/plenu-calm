@@ -1,0 +1,42 @@
+/* =========================================================
+   Design tokens（元のWixサイトから実測した値）
+   ========================================================= */
+:root {
+  /* Colors */
+  --color-text: #404a45;
+  --color-green: #207f3b;
+  --color-green-light: #299849;
+  --color-hero-bg: #dce8df;
+  --color-header-logo: #1d5992;
+  --color-feature-1: #7db885;
+  --color-feature-2: #9fd26b;
+  --color-feature-3: #73a8ce;
+  --color-cream: #ffffe5;
+  --color-marker: rgba(255, 255, 73, 0.5);
+  --color-highlight: #ffff49;
+  --color-voices-bg: rgba(208, 234, 101, 0.82);
+  --color-placeholder: #c7c7c7;
+  --color-white: #fff;
+
+  /* Fonts
+     ZA  : Wixにアップロードされていた独自フォント（Zen Antique）
+     BOD : bodoni-w01-poster → Bodoni Moda 900 / opsz 6（代替）
+     TSU : 筑紫ゴシック → Zen Kaku Gothic New（代替）
+     MB  : A-OTF ゴシックMB101 → Zen Kaku Gothic New 500（代替） */
+  --font-za: 'Zen Antique', serif;
+  --font-bod: 'Bodoni Moda', 'Bodoni 72', serif;
+  --font-tsu: 'Zen Kaku Gothic New', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
+  --font-mb: 'Zen Kaku Gothic New', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
+  --font-lux: 'Luxurious Script', cursive;
+  --font-kod: 'Kodchasan', sans-serif;
+  --font-k2d: 'K2D', sans-serif;
+  --font-form: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+  /* Logo shadow (Wix: #fff 3px 3px 0, rgba(0,0,0,.2) 6px 6px 0) */
+  --shadow-logo: #fff 3px 3px 0, rgba(0, 0, 0, 0.2) 6px 6px 0;
+  --shadow-glow: #fff 0 0 6px;
+
+  /* Layout: Wixのデスクトップグリッド幅 */
+  --stage-width: 980px;
+  --header-height: 41px;
+}

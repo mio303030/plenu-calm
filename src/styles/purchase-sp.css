@@ -1,0 +1,74 @@
+/* =========================================================
+   ご購入はこちら（スマホ版：〜767px）
+   Wixのモバイル用レイアウト（320px幅）の実測値
+   ========================================================= */
+@media (max-width: 767px) {
+  .purchase {
+    height: 907px;
+    padding-top: 0;
+  }
+
+  .purchase__box {
+    height: 907px;
+    margin: 0;
+  }
+
+  .purchase__title {
+    left: 20px;
+    top: 19.6px;
+    font-size: 27px;
+    line-height: 37.8px;
+  }
+
+  .purchase__note {
+    left: 20px;
+    top: 68.2px;
+    width: 260px;
+    white-space: normal;
+  }
+
+  .purchase-form {
+    left: 0;
+    top: 119px;
+    width: 320px;
+    height: 516px;
+  }
+
+  .purchase-form__field { width: 280px; }
+
+  .purchase-form__field input { height: 45px; }
+
+  .purchase-form__field textarea {
+    height: 75px;
+    padding: 12px 10px 3px;
+  }
+
+  .purchase-form__field--last    { left: 20px; top: 26px; }
+  .purchase-form__field--first   { left: 20px; top: 116px; }
+  .purchase-form__field--email   { left: 20px; top: 206px; }
+  .purchase-form__field--message { left: 20px; top: 296px; width: 280px; }
+
+  .purchase-form__submit {
+    left: 20px;
+    top: 416px;
+    width: 280px;
+    height: 42px;
+    font-size: 15px;
+  }
+
+  .purchase-form__notice {
+    left: 20px;
+    right: auto;
+    top: 464px;
+    width: 280px;
+    line-height: 1.4;
+    text-align: center;
+  }
+
+  .purchase__home {
+    left: 100px;
+    top: 645px;
+    width: 120px;
+    height: 42px;
+  }
+}

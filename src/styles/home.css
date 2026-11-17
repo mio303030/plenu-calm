@@ -1,0 +1,676 @@
+/* =========================================================
+   Home（PC版）
+   座標はWix(1265px幅表示)の実測値を、980pxステージ左上基準に換算
+   ========================================================= */
+
+/* ---------- 共通のテキスト装飾 ---------- */
+.is-green { color: var(--color-green); }
+.is-black { color: #000; }
+.is-highlight { color: var(--color-highlight); }
+.fs17 { font-size: 17px; }
+.fs20 { font-size: 20px; }
+.fs23 { font-size: 23px; }
+.fs27 { font-size: 27px; }
+.fs30 { font-size: 30px; }
+.fs38 { font-size: 38px; }
+
+.section-title {
+  font-family: var(--font-za);
+  font-size: 35px;
+  line-height: 49px;
+  color: var(--color-green);
+  white-space: nowrap;
+}
+
+/* ---------- First view ---------- */
+.hero {
+  height: 517px;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 453px;
+  background: var(--color-hero-bg);
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 453px;
+  /* Wixでは 幅100% × 高さ800px の枠に cover で敷かれ、ヒーロー部分だけが見えている */
+  background: url('/images/hero-bg.webp') center 45% / 100% auto no-repeat;
+  opacity: 0.05;
+}
+
+.hero .stage { z-index: 1; }
+
+.hero__catch {
+  left: 18.5px;
+  top: 40px;
+  width: 690px;
+  font-family: var(--font-za);
+  font-size: 38px;
+  line-height: 1.9;
+  color: var(--color-text);
+}
+
+.hero__catch-2 { color: var(--color-green); }
+
+/* 1行ずつの枠（登場演出で行の下からテキストを出すため、はみ出しを隠す） */
+.hero__line {
+  display: block;
+  overflow: hidden;
+}
+
+.hero__catch-1,
+.hero__catch-2 {
+  display: inline-block;
+}
+
+.hero__tagline,
+.cta__tagline {
+  font-family: var(--font-tsu);
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-align: center;
+  color: var(--color-green);
+  text-shadow: var(--shadow-glow);
+}
+
+.hero__tagline {
+  left: 464.5px;
+  top: 271px;
+  width: 393px;
+  font-size: 20px;
+  line-height: 1.3;
+}
+
+.hero__logo,
+.cta__logo,
+.brand__logo {
+  font-family: var(--font-bod);
+  letter-spacing: -0.05em;
+  color: var(--color-green);
+  text-shadow: var(--shadow-logo);
+  white-space: nowrap;
+}
+
+.hero__logo {
+  left: 512.5px;
+  top: 319px;
+  font-size: 50px;
+  line-height: 70px;
+}
+
+.hero__kana,
+.cta__kana {
+  font-family: var(--font-mb);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  line-height: 1.5;
+  color: var(--color-green);
+  text-shadow: var(--shadow-glow);
+  white-space: nowrap;
+}
+
+.hero__kana {
+  left: 576.5px;
+  top: 383px;
+  font-size: 17px;
+}
+
+.hero__bottle {
+  left: 794.5px;
+  top: 102px;
+  width: 193px;
+  height: 350px;
+}
+
+.hero__wave {
+  left: -384.5px;
+  top: 418px;
+  width: 1770px;
+  height: 93px;
+}
+
+/* ---------- Concept ---------- */
+.concept {
+  height: 701px;
+}
+
+.concept__text {
+  position: absolute;
+  top: 34px;
+  left: 50%;
+  width: 1156px;
+  transform: translateX(-50%);
+  font-family: var(--font-za);
+  text-align: center;
+  color: var(--color-text);
+}
+
+.concept__p1 { font-size: 31px; line-height: 2.47; }
+.concept__p2 { font-size: 22px; line-height: 2.47; }
+.concept__p3 { font-size: 29px; line-height: 2.47; }
+.concept__p4 { height: 64.9px; }
+.concept__p5 { font-size: 27px; line-height: 1.9; }
+.concept__p6 { font-size: 29px; line-height: 1.9; }
+.concept__p7 { font-size: 32px; line-height: 2.47; }
+
+/* この1行だけ幅1040pxあり、980px基準のレイアウトからはみ出して両端が切れるため、
+   タブレット〜幅の狭いPC（768〜1099px）では文字を少しだけ小さくして収める */
+@media (min-width: 768px) and (max-width: 1099px) {
+  .concept__p7 { font-size: 29px; }
+}
+
+/* ---------- Washing machine ---------- */
+.machine {
+  height: 712px;
+}
+
+.machine__img {
+  left: 115.5px;
+  top: 96px;
+  width: 748px;
+  height: 500px;
+}
+
+/* ---------- CTA ---------- */
+.cta {
+  height: 518px;
+  background: url('/images/leaves-bg.webp') center / cover no-repeat;
+}
+
+.cta__veil {
+  left: 50.5px;
+  top: -13px;
+  width: 1305px;
+  height: 525px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.cta__bottle {
+  left: 170.5px;
+  top: 58px;
+  width: 210px;
+  height: 382px;
+}
+
+.cta__tagline {
+  left: 392.5px;
+  top: 144px;
+  width: 393px;
+  font-size: 23px;
+  line-height: 1.1;
+}
+
+.cta__logo {
+  left: 422.5px;
+  top: 198px;
+  font-size: 54px;
+  line-height: 75.6px;
+}
+
+.cta__kana {
+  left: 499.5px;
+  top: 262px;
+  font-size: 18px;
+}
+
+.cta__btn {
+  left: 449.5px;
+  top: 303px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 268px;
+  height: 51px;
+  border-radius: 10px;
+  background: var(--color-green);
+  font-family: var(--font-tsu);
+  font-size: 24px;
+  color: var(--color-white);
+}
+
+/* ---------- Question ---------- */
+.question {
+  height: 339px;
+}
+
+.question__woman {
+  left: 114.5px;
+  top: 102px;
+  width: 138px;
+  height: 235px;
+}
+
+.question__bubble {
+  left: 240.5px;
+  top: 40px;
+  width: 625px;
+  height: 164px;
+}
+
+.question__text {
+  left: 294.5px;
+  top: 109px;
+  width: 531px;
+  font-family: var(--font-za);
+  font-size: 23px;
+  line-height: 32.2px;
+  color: var(--color-white);
+  white-space: nowrap;
+}
+
+/* ---------- Reasons ---------- */
+.reasons {
+  height: 1867px;
+}
+
+.reason-num {
+  width: 82px;
+  font-family: var(--font-lux);
+  font-size: 129px;
+  line-height: 90.3px;
+  color: var(--color-text);
+  white-space: nowrap;
+}
+
+.reason-line {
+  width: 62px;
+  height: 5px;
+  border-top: 5px dotted var(--color-text);
+}
+
+.reason-title {
+  font-family: var(--font-za);
+  font-size: 30px;
+  line-height: 42px;
+  color: var(--color-green);
+  white-space: nowrap;
+}
+
+.reason-body {
+  font-family: var(--font-za);
+  font-size: 18px;
+  line-height: 3;
+  color: var(--color-text);
+}
+
+.reasons__num1   { left: 128.5px; top: 89px; }
+.reasons__line1  { left: 126.5px; top: 189px; }
+.reasons__title1 { left: 121.5px; top: 228px; width: 322px; }
+.reasons__body1  { left: 121.5px; top: 298px; width: 387px; }
+
+.reasons__num2   { left: 599.5px; top: 782px; }
+.reasons__line2  { left: 597.5px; top: 882px; }
+.reasons__title2 { left: 592.5px; top: 921px; width: 322px; }
+.reasons__body2  { left: 592.5px; top: 990px; width: 387px; }
+
+.reasons__num3   { left: 42.5px; top: 1378px; }
+.reasons__line3  { left: 40.5px; top: 1478px; }
+.reasons__title3 { left: 35.5px; top: 1517px; width: 452px; }
+.reasons__body3  { left: 36.5px; top: 1587px; width: 402px; }
+
+.reasons__basket  { left: 732.5px; top: 0;      width: 410px; height: 273px; }
+.reasons__laundry { left: 645.5px; top: 290px;  width: 501px; height: 339px; }
+.reasons__leaf    { left: 0.5px;   top: 590px;  width: 300px; height: 252px; }
+.reasons__shirts  { left: -161.5px; top: 921px; width: 600px; height: 400px; }
+.reasons__img3    { left: 596.5px; top: 1283px; width: 298px; height: 443px; }
+.reasons__wave    { left: -307.5px; top: 1774px; width: 1906px; height: 93px; }
+
+/* ---------- Features ---------- */
+.features {
+  height: 551px;
+}
+
+.features__title {
+  left: 329.5px;
+  top: 31px;
+}
+
+.feature {
+  top: 114px;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  color: var(--color-white);
+  font-family: var(--font-tsu);
+  text-align: center;
+}
+
+.feature--1 { left: 0.5px;   background: var(--color-feature-1); }
+.feature--2 { left: 340.5px; background: var(--color-feature-2); }
+.feature--3 { left: 679.5px; background: var(--color-feature-3); }
+
+.feature__title {
+  position: absolute;
+  top: 78px;
+  left: 0;
+  width: 100%;
+  font-size: 39px;
+  font-weight: 400;
+  line-height: 54.6px;
+}
+
+.feature__text {
+  position: absolute;
+  top: 160px;
+  left: 0;
+  width: 100%;
+  font-size: 16px;
+  line-height: 25.6px;
+}
+
+/* ---------- Recommend ---------- */
+.recommend {
+  height: 620px;
+}
+
+.recommend__title {
+  left: 278.5px;
+  top: 25px;
+}
+
+.rec {
+  width: 208px;
+  text-align: center;
+}
+
+.rec__icon {
+  width: 138px;
+  height: 138px;
+  margin: 0 auto;
+}
+
+.rec__label {
+  font-family: var(--font-tsu);
+  font-size: 16px;
+  line-height: 25.6px;
+  color: var(--color-text);
+}
+
+.rec--1 { left: 57.5px;  top: 127px; }
+.rec--2 { left: 385.5px; top: 127px; }
+.rec--3 { left: 714.5px; top: 127px; }
+.rec--4 { left: 212.5px; top: 372px; }
+.rec--5 { left: 559.5px; top: 368px; }
+.rec--5 .rec__icon { width: 152px; height: 152px; }
+
+/* ---------- Brand ---------- */
+.brand {
+  height: 1456px;
+}
+
+.brand__box {
+  left: 0.5px;
+  top: 76px;
+  width: 980px;
+  height: 1307px;
+  background: var(--color-cream);
+  border: 7px solid var(--color-green);
+}
+
+.brand__circle {
+  left: 286.5px;
+  top: 103px;
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  background: var(--color-green-light);
+}
+
+.brand__q {
+  left: 305.5px;
+  top: 97px;
+  width: 39px;
+  font-family: var(--font-kod);
+  font-size: 61px;
+  line-height: 85.4px;
+  color: var(--color-white);
+  text-align: center;
+}
+
+.brand__heading > span {
+  color: var(--color-green);
+  white-space: nowrap;
+}
+
+.brand__sub {
+  left: 372.5px;
+  top: 135px;
+  font-family: var(--font-za);
+  font-size: 23px;
+  line-height: 32.2px;
+  letter-spacing: 0.1em;
+}
+
+.brand__logo {
+  left: 180.5px;
+  top: 162px;
+  font-size: 48px;
+  line-height: 67.2px;
+}
+
+.brand__kana {
+  left: 468.5px;
+  top: 195px;
+  font-family: var(--font-mb);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 22.4px;
+  letter-spacing: 0.64px;
+  text-shadow: var(--shadow-glow);
+}
+
+.brand__about {
+  left: 641.5px;
+  top: 175px;
+  font-family: var(--font-za);
+  font-size: 35px;
+  line-height: 49px;
+  letter-spacing: 0.7px;
+}
+
+.brand__marker {
+  height: 40px;
+  background: var(--color-marker);
+}
+
+.brand__marker--1 { left: 286.5px; top: 430px; width: 372px; }
+.brand__marker--2 { left: 341.5px; top: 492px; width: 210px; }
+.brand__marker--3 { left: 279.5px; top: 978px; width: 391px; }
+
+.brand__lead {
+  left: 210.5px;
+  top: 289px;
+  width: 559px;
+  font-family: var(--font-za);
+  font-size: 17px;
+  line-height: 60.84px;
+  text-align: center;
+  color: var(--color-text);
+}
+
+.brand__dots {
+  height: 7px;
+  border-top: 3px dotted var(--color-text);
+}
+
+.brand__dots--1 { left: 467.5px; top: 713px; width: 202px; }
+.brand__dots--2 { left: 375.5px; top: 777px; width: 158px; }
+
+.brand__wave {
+  left: 29.5px;
+  top: 848px;
+  width: 920px;
+  height: 93px;
+}
+
+.brand__meaning-title {
+  left: 305.5px;
+  top: 978px;
+  width: 370px;
+  font-family: var(--font-za);
+  font-size: 28px;
+  line-height: 39.2px;
+  color: var(--color-green);
+  white-space: nowrap;
+}
+
+.brand__term {
+  font-family: var(--font-za);
+  font-size: 23px;
+  line-height: 45px;
+  color: var(--color-text);
+  white-space: nowrap;
+}
+
+.brand__term--plenu { left: 261.5px; top: 1053px; }
+.brand__term--calm  { left: 266.5px; top: 1190px; }
+
+.brand__meaning {
+  left: 359.5px;
+  top: 1056px;
+  width: 358px;
+  font-family: var(--font-za);
+  font-size: 15px;
+  line-height: 45px;
+  color: var(--color-text);
+  white-space: pre-wrap;
+}
+
+/* ---------- Voices ---------- */
+.voices {
+  height: 1339px;
+}
+
+.voices__title {
+  left: 206.5px;
+  top: 34px;
+  width: 567px;
+  font-family: var(--font-za);
+  font-size: 35px;
+  line-height: 49px;
+  text-align: center;
+  color: var(--color-green);
+}
+
+.voices__bg {
+  left: 0.5px;
+  top: 169px;
+  width: 980px;
+  height: 1119px;
+  background: var(--color-voices-bg);
+}
+
+.voice {
+  width: 429px;
+  height: 446px;
+  padding: 24px 35px 0 36px;
+  background: var(--color-white);
+  text-align: center;
+  color: var(--color-text);
+  font-family: var(--font-k2d);
+}
+
+.voice--1 { left: 44.5px;  top: 196px; }
+.voice--2 { left: 508.5px; top: 196px; }
+.voice--3 { left: 44.5px;  top: 737px; }
+.voice--4 { left: 508.5px; top: 737px; }
+
+.voice__img {
+  width: 359px;
+  height: 269px;
+  background: var(--color-placeholder);
+}
+
+.voice__title {
+  margin-top: 15px;
+  font-size: 19px;
+  line-height: 23px;
+}
+
+.voice__text {
+  margin-top: 17px;
+  font-size: 15px;
+  line-height: 18px;
+}
+
+/* ---------- FAQ ---------- */
+/* 回答を開くと高さが伸びるため、このセクションだけ通常フローで組む */
+.faq {
+  height: auto;
+}
+
+.faq .stage {
+  padding: 140px 0 56px;
+}
+
+.faq__title {
+  left: 381.5px;
+  top: 46px;
+}
+
+.faq__list {
+  position: relative;
+  left: 239.5px;
+  width: 501px;
+}
+
+/* Wixの横線パーツ（高さ7pxの枠の中に1px線） */
+.faq__item::before,
+.faq__list::after {
+  content: '';
+  display: block;
+  height: 7px;
+  background: linear-gradient(var(--color-text), var(--color-text)) 0 3px / 100% 1px no-repeat;
+}
+
+.faq__item::before {
+  margin-bottom: 5px;
+}
+
+.faq__item {
+  padding-bottom: 7px;
+}
+
+.faq__text,
+.faq__toggle {
+  margin-left: 8px;
+}
+
+.faq__text {
+  width: 485px;
+  font-family: var(--font-za);
+  font-size: 21px;
+  line-height: 31.5px;
+  color: var(--color-text);
+  white-space: pre-wrap;
+}
+
+.faq__item:not(.is-open) .faq__text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  overflow: hidden;
+}
+
+.faq__toggle {
+  display: block;
+  height: 24px;
+  margin-top: 3px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-family: Futura, 'Century Gothic', 'Trebuchet MS', sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  color: #000;
+  text-decoration: underline;
+  cursor: pointer;
+}

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ご購入はこちら | Plenu Calm</title>
+  <!-- ポートフォリオ用の再現ページのため検索エンジンに登録しない -->
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,900&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" />
+  <script>
+    /* Wixと同じく、スマホは320px幅・タブレットは980px幅のレイアウトを、画面幅に合わせて拡大縮小する */
+    (function () {
+      var root = document.documentElement;
+      // アニメーション用（JSが動かない環境では非表示から始めない）
+      root.classList.add('js');
+      // 万一メインのJSが読み込めなくても、3秒後には必ず表示する
+      setTimeout(function () { root.classList.add('is-ready'); }, 3000);
+      function fit() {
+        var w = root.clientWidth;
+        root.style.setProperty('--zoom', w < 768 ? w / 320 : w < 980 ? w / 980 : 1);
+      }
+      fit();
+      addEventListener('resize', fit);
+    })();
+  </script>
+  <script type="module" src="/src/purchase.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-header__logo" href="/">Plenu calm</a>
+    <!-- スマホ表示のみ：Wixのハンバーガーメニュー -->
+    <button class="menu-toggle js-menu-toggle" type="button" aria-label="ナビゲーションメニューを開く" aria-expanded="false" aria-controls="site-menu"><span></span><span></span><span></span></button>
+    <nav class="site-menu" id="site-menu" aria-label="サイト">
+      <ul>
+        <li><a href="/">ホーム</a></li>
+        <li><a href="/purchase.html" aria-current="page">ご購入はこちら</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="purchase">
+    <div class="purchase__box">
+      <div class="stage">
+        <h1 class="abs purchase__title">ご購入フォーム</h1>
+        <p class="abs purchase__note">※送信いただいたメールアドレス宛に、商品購入URLをお送りいたします。</p>
+
+        <!--
+          デモ用フォーム：送信先(action)と name 属性を持たせず、
+          JSで submit を必ず止めるため、入力内容がどこにも送られない
+        -->
+        <form class="abs purchase-form js-demo-form" novalidate autocomplete="off" aria-describedby="demo-notice">
+          <div class="purchase-form__field purchase-form__field--last">
+            <label for="f-last">姓</label>
+            <input id="f-last" type="text" />
+          </div>
+          <div class="purchase-form__field purchase-form__field--first">
+            <label for="f-first">名</label>
+            <input id="f-first" type="text" />
+          </div>
+          <div class="purchase-form__field purchase-form__field--email">
+            <label for="f-email" class="is-required">メールアドレス</label>
+            <input id="f-email" type="email" aria-required="true" />
+          </div>
+          <div class="purchase-form__field purchase-form__field--message">
+            <label for="f-message">メッセージ</label>
+            <textarea id="f-message"></textarea>
+          </div>
+          <button class="purchase-form__submit" type="submit">送信</button>
+          <p class="purchase-form__notice" id="demo-notice" role="status" aria-live="polite" hidden>※ポートフォリオ用のデモページのため、<br class="sp-only" />送信は行われません。</p>
+        </form>
+
+        <a class="abs purchase__home" href="/">ホームへ戻る▶</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p class="site-footer__logo">Plenu carm</p>
+    <p class="site-footer__copy">Copy right © 2025plenu calm</p>
+  </footer>
+</body>
+</html>

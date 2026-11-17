@@ -1,0 +1,131 @@
+/* =========================================================
+   Animation
+   - JSが動いている時（html.js）だけ非表示から始めるので、
+     JSが無効でも内容は普通に表示される
+   - 「視差効果を減らす」設定の環境では動きを付けない
+   - 位置調整に transform を使っている要素があるため、
+     動きは独立した translate プロパティで付ける
+   ========================================================= */
+
+/* ---------- ファーストビュー用 ---------- */
+
+/* 背景写真：ゆっくりズームアウト */
+@keyframes hero-zoom-out {
+  from { transform: scale(1.15); }
+  to   { transform: none; }
+}
+
+/* キャッチコピー：行の枠の下から1行ずつせり上がる */
+@keyframes line-up {
+  from { opacity: 0; translate: 0 105%; }
+  to   { opacity: 1; translate: none; }
+}
+
+/* 商品ボトル：下から浮かび上がる */
+@keyframes float-up {
+  from { opacity: 0; translate: 0 56px; }
+  to   { opacity: 1; translate: none; }
+}
+
+/* ロゴ：ぼかしが取れながらフェードイン */
+@keyframes logo-in {
+  from { opacity: 0; filter: blur(6px); }
+  to   { opacity: 1; filter: none; }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; translate: 0 14px; }
+  to   { opacity: 1; translate: none; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* ---------- ファーストビュー ----------
+     フォントの読み込み後（html.is-ready）に再生。全体で約2.6秒
+       0.0s 背景がズームアウト開始（〜2.6s）
+       0.2s キャッチ1行目 / 0.45s 2行目
+       0.7s ボトルが浮かび上がる
+       1.3s タグライン・波線
+       1.7s ロゴ / 1.85s カナ（最後） */
+  :root {
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .js .hero__catch-1,
+  .js .hero__catch-2,
+  .js .hero__tagline,
+  .js .hero__logo,
+  .js .hero__kana,
+  .js .hero__bottle,
+  .js .hero__wave {
+    opacity: 0;
+  }
+
+  .js .hero::after { transform: scale(1.15); }
+
+  .js.is-ready .hero::after   { animation: hero-zoom-out 2.6s var(--ease-out) both; }
+  .js.is-ready .hero__catch-1 { animation: line-up 0.9s var(--ease-out) 0.2s both; }
+  .js.is-ready .hero__catch-2 { animation: line-up 0.9s var(--ease-out) 0.45s both; }
+  .js.is-ready .hero__bottle  { animation: float-up 1.3s var(--ease-out) 0.7s both; }
+  .js.is-ready .hero__tagline { animation: fade-up 0.9s var(--ease-out) 1.3s both; }
+  .js.is-ready .hero__wave    { animation: fade-in 1s ease 1.3s both; }
+  .js.is-ready .hero__logo    { animation: logo-in 0.9s ease 1.7s both; }
+  .js.is-ready .hero__kana    { animation: fade-in 0.75s ease 1.85s both; }
+
+  /* ---------- スクロールで表示（クラスは reveal.js が付与） ---------- */
+  /* .js を付けて詳細度を上げ、要素側の transition（CTAボタンなど）より優先させる */
+  .js .reveal {
+    opacity: 0;
+    translate: 0 16px;
+    transition:
+      opacity 0.9s ease var(--reveal-delay, 0s),
+      translate 0.9s cubic-bezier(0.2, 0.7, 0.3, 1) var(--reveal-delay, 0s);
+  }
+
+  .js .reveal--up {
+    translate: 0 32px;
+    transition-duration: 1.2s;
+  }
+
+  .js .reveal.is-visible {
+    opacity: 1;
+    translate: none;
+  }
+}
+
+/* ---------- CTAボタンのホバー ---------- */
+.cta__btn {
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+@media (hover: hover) {
+  .cta__btn:hover {
+    background-color: var(--color-green-light);
+    box-shadow: 0 6px 16px rgba(32, 127, 59, 0.3);
+    transform: translateY(-2px);
+  }
+}
+
+.cta__btn:active {
+  box-shadow: 0 2px 6px rgba(32, 127, 59, 0.3);
+  transform: translateY(0);
+}
+
+.cta__btn:focus-visible {
+  outline: 2px solid var(--color-green);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta__btn:hover,
+  .cta__btn:active {
+    transform: none;
+  }
+}

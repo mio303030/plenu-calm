@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ホーム | Plenu Calm</title>
+  <meta name="description" content="Plenu calm（プレニュー カーム）は、「素で満ちる暮らし」を叶える衣類用無添加洗剤です。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,900&family=K2D&family=Kodchasan&family=Luxurious+Script&family=Zen+Antique&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" />
+  <script>
+    /* Wixと同じく、スマホは320px幅・タブレットは980px幅のレイアウトを、画面幅に合わせて拡大縮小する */
+    (function () {
+      var root = document.documentElement;
+      // アニメーション用（JSが動かない環境では非表示から始めない）
+      root.classList.add('js');
+      // 万一メインのJSが読み込めなくても、3秒後には必ず表示する
+      setTimeout(function () { root.classList.add('is-ready'); }, 3000);
+      function fit() {
+        var w = root.clientWidth;
+        root.style.setProperty('--zoom', w < 768 ? w / 320 : w < 980 ? w / 980 : 1);
+      }
+      fit();
+      addEventListener('resize', fit);
+    })();
+  </script>
+  <script type="module" src="/src/main.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-header__logo" href="/">Plenu calm</a>
+    <!-- スマホ表示のみ：Wixのハンバーガーメニュー -->
+    <button class="menu-toggle js-menu-toggle" type="button" aria-label="ナビゲーションメニューを開く" aria-expanded="false" aria-controls="site-menu"><span></span><span></span><span></span></button>
+    <nav class="site-menu" id="site-menu" aria-label="サイト">
+      <ul>
+        <li><a href="/" aria-current="page">ホーム</a></li>
+        <li><a href="/purchase.html">ご購入はこちら</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ===== First view ===== -->
+    <section class="section hero" aria-label="ファーストビュー">
+      <div class="stage">
+        <h1 class="abs hero__catch">
+          <!-- 1行ずつ下から現れる演出のため、各行を「切り抜き用の枠」で包む -->
+          <span class="hero__line"><span class="hero__catch-1">大切な一枚を、今日も心地よく。</span></span>
+          <span class="hero__line"><span class="hero__catch-2">おしゃれ着にやさしい、無添加の選択。</span></span>
+        </h1>
+        <p class="abs hero__tagline">大切な衣類を<br />丁寧に扱いたい人へ</p>
+        <p class="abs hero__logo">Plenu calm</p>
+        <p class="abs hero__kana">プレニュー カーム</p>
+        <img class="abs hero__bottle" src="/images/bottle.webp" width="182" height="328" alt="Plenu calm のボトル" />
+        <img class="abs hero__wave cover-img" src="/images/wave.webp" width="1132" height="175" alt="" />
+      </div>
+    </section>
+
+    <!-- ===== Concept ===== -->
+    <section class="section concept" aria-label="コンセプト">
+      <div class="concept__text">
+        <p class="concept__p1 is-green">無理に飾らず、素のままで心地いいものを。</p>
+        <p class="concept__p2">&#8203;</p>
+        <p class="concept__p3"><span class="fs27">ふだんの暮らしに、</span><span class="fs30">すっと馴染む</span><span class="fs27">。</span><br /><span class="fs27">肌にも空間にもやさしい“</span><span class="fs30">洗う</span><span class="fs27">”</span><span class="fs30">という習慣</span><span class="fs27">。</span></p>
+        <p class="concept__p4"></p>
+        <p class="concept__p5">香りでごまかさず、<span class="is-green">デザインで主張しない</span><span class="is-black">。</span></p>
+        <p class="concept__p6"><span class="fs27">それでも、</span><span class="fs30 is-green">心地よさがきちんと伝わる</span><span class="fs27">。</span></p>
+        <p class="concept__p7"><br />Plenu calm は、「素で満ちる暮らし」を叶える<span class="is-green">衣類用無添加洗剤</span>です。</p>
+      </div>
+    </section>
+
+    <section class="section machine" aria-hidden="true">
+      <div class="stage">
+        <img class="abs machine__img cover-img" src="/images/washing-machine.webp" width="1500" height="1000" alt="" loading="lazy" />
+      </div>
+    </section>
+
+    <!-- ===== CTA 1 ===== -->
+    <section class="section cta cta--1" aria-label="ご購入">
+      <div class="stage">
+        <div class="abs cta__veil"></div>
+        <img class="abs cta__bottle" src="/images/bottle.webp" width="182" height="328" alt="Plenu calm のボトル" loading="lazy" />
+        <p class="abs cta__tagline">大切な衣類を<br />丁寧に扱いたい人へ</p>
+        <p class="abs cta__logo">Plenu calm</p>
+        <p class="abs cta__kana">プレニュー カーム</p>
+        <a class="abs cta__btn" href="/purchase.html">ご購入はこちら</a>
+      </div>
+    </section>
+
+    <!-- ===== Question ===== -->
+    <section class="section question" aria-label="無添加なのに汚れが落ちる理由">
+      <div class="stage">
+        <img class="abs question__woman" src="/images/thinking-woman.webp" width="138" height="235" alt="" loading="lazy" />
+        <img class="abs question__bubble" src="/images/speech-bubble.webp" width="957" height="261" alt="" loading="lazy" />
+        <h2 class="abs question__text">どうして無添加なのに、<span class="is-highlight">ちゃんと汚れが落ちる</span>の？</h2>
+      </div>
+    </section>
+
+    <!-- ===== Reasons 01-03 ===== -->
+    <section class="section reasons" aria-label="3つの理由">
+      <div class="stage">
+        <img class="abs reasons__basket cover-img" src="/images/reason01-basket.webp" width="820" height="547" alt="" loading="lazy" />
+        <img class="abs reasons__laundry cover-img" src="/images/reason01-laundry.webp" width="1000" height="667" alt="" loading="lazy" />
+
+        <p class="abs reason-num reasons__num1">01</p>
+        <span class="abs reason-line reasons__line1"></span>
+        <h3 class="abs reason-title reasons__title1">植物由来の洗浄成分</h3>
+        <div class="abs reason-body reasons__body1">
+          <p>植物由来のココナッツ洗浄成分を配合。</p>
+          <p>肌へのやさしさを守りながら、</p>
+          <p>皮脂や汗などの生活汚れを</p>
+          <p>しっかり落とします。</p>
+        </div>
+        <img class="abs reasons__leaf cover-img" src="/images/reason01-leaf-glass.webp" width="600" height="504" alt="" loading="lazy" />
+
+        <img class="abs reasons__shirts cover-img" src="/images/reason02-shirts.webp" width="1200" height="800" alt="" loading="lazy" />
+
+        <p class="abs reason-num reasons__num2">02</p>
+        <span class="abs reason-line reasons__line2"></span>
+        <h3 class="abs reason-title reasons__title2">界面活性剤の最適配合</h3>
+        <div class="abs reason-body reasons__body2">
+          <p>洗浄力を保ちながら、 肌への刺激になりにくい成分を厳選配合。</p>
+          <p>必要最低限の成分で “やさしさ”と“落ちる”を</p>
+          <p>両立しました。</p>
+        </div>
+
+        <img class="abs reasons__img3 cover-img pc-only" src="/images/reason03.webp" width="600" height="896" alt="" loading="lazy" />
+
+        <p class="abs reason-num reasons__num3">03</p>
+        <span class="abs reason-line reasons__line3"></span>
+        <h3 class="abs reason-title reasons__title3">泡立ち控えめ<br class="sp-only" /><span class="sp-only">　　　　</span>＝すすぎ残しにくい</h3>
+        <div class="abs reason-body reasons__body3">
+          <p>泡立ちをおさえた設計で、衣類に洗剤が</p>
+          <p>残りにくくすすぎも簡単。</p>
+          <p>敏感肌や赤ちゃんの衣類にも安心して使えます。</p>
+        </div>
+
+        <img class="abs reasons__wave cover-img" src="/images/wave.webp" width="1132" height="175" alt="" loading="lazy" />
+      </div>
+    </section>
+
+    <!-- ===== Features ===== -->
+    <section class="section features bg-paper" aria-label="使うたび、心地いい">
+      <div class="stage">
+        <h2 class="abs section-title features__title">使うたび、心地いい</h2>
+        <ul>
+          <li class="abs feature feature--1">
+            <h3 class="feature__title">肌にやさしい</h3>
+            <p class="feature__text">植物由来の成分で、敏感肌や<br />赤ちゃんの衣類にも安心。</p>
+          </li>
+          <li class="abs feature feature--2">
+            <h3 class="feature__title">香りすっきり</h3>
+            <p class="feature__text">洗い上がりは自然でやさしい香り。<br />毎日の洗濯が心地よく。</p>
+          </li>
+          <li class="abs feature feature--3">
+            <h3 class="feature__title">衣類も長持ち</h3>
+            <p class="feature__text">繊維を傷めにくい処方で、<br />お気に入りの服をやさしく守る。</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== Recommend ===== -->
+    <section class="section recommend bg-paper" aria-label="こんな衣類におすすめです">
+      <div class="stage">
+        <h2 class="abs section-title recommend__title">こんな衣類におすすめです</h2>
+        <ul>
+          <li class="abs rec rec--1"><img class="rec__icon" src="/images/icon-baby.webp" width="256" height="256" alt="" loading="lazy" /><p class="rec__label">赤ちゃんや子どもの衣類</p></li>
+          <li class="abs rec rec--2"><img class="rec__icon" src="/images/icon-linen.webp" width="256" height="256" alt="" loading="lazy" /><p class="rec__label">リネンシャツ</p></li>
+          <li class="abs rec rec--3"><img class="rec__icon" src="/images/icon-fashion.webp" width="256" height="256" alt="" loading="lazy" /><p class="rec__label">おしゃれ着や天然素材の衣類</p></li>
+          <li class="abs rec rec--4"><img class="rec__icon" src="/images/icon-bedding.webp" width="256" height="256" alt="" loading="lazy" /><p class="rec__label">枕カバーやシーツなどの寝具</p></li>
+          <li class="abs rec rec--5"><img class="rec__icon" src="/images/icon-underwear.webp" width="256" height="256" alt="" loading="lazy" /><p class="rec__label">肌が敏感な方の肌着</p></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== CTA 2 ===== -->
+    <section class="section cta cta--2" aria-label="ご購入">
+      <div class="stage">
+        <div class="abs cta__veil"></div>
+        <img class="abs cta__bottle" src="/images/bottle.webp" width="182" height="328" alt="Plenu calm のボトル" loading="lazy" />
+        <p class="abs cta__tagline">大切な衣類を<br />丁寧に扱いたい人へ</p>
+        <p class="abs cta__logo">Plenu calm</p>
+        <p class="abs cta__kana">プレニュー カーム</p>
+        <a class="abs cta__btn" href="/purchase.html">ご購入はこちら</a>
+      </div>
+    </section>
+
+    <!-- ===== Brand ===== -->
+    <section class="section brand bg-paper" aria-label="Plenu calm について">
+      <div class="stage">
+        <div class="abs brand__box"></div>
+        <span class="abs brand__circle"></span>
+        <p class="abs brand__q" aria-hidden="true">?</p>
+        <h2 class="brand__heading">
+          <span class="abs brand__sub">衣類用無添加洗剤</span>
+          <span class="abs brand__logo">Plenu calm</span>
+          <span class="abs brand__kana">(プレニュー カーム)</span>
+          <span class="abs brand__about">について</span>
+        </h2>
+
+        <span class="abs brand__marker brand__marker--1"></span>
+        <span class="abs brand__marker brand__marker--2"></span>
+        <p class="abs brand__lead"><span class="fs17">「</span><span class="fs20">ホテルライク</span><span class="fs17">」な上質さと洗練された<br />デザインを持ちながら、<br /></span><span class="fs23 is-green">肌にやさしい無添加成分を使った<br />洗濯洗剤ブランド</span><span class="fs17">です。<br /><br />洗剤としてだけでなく、<br />インテリアに馴染む</span><span class="fs23 is-green">シンプルで都会的な<br />ボトルデザイン</span><span class="fs17">も重視。</span></p>
+        <span class="abs brand__dots brand__dots--1"></span>
+        <span class="abs brand__dots brand__dots--2"></span>
+
+        <img class="abs brand__wave cover-img" src="/images/wave.webp" width="1132" height="175" alt="" loading="lazy" />
+
+        <span class="abs brand__marker brand__marker--3"></span>
+        <h3 class="abs brand__meaning-title">ブランド名に込められた意味</h3>
+        <p class="abs brand__term brand__term--plenu">「plenu」</p>
+        <p class="abs brand__term brand__term--calm">「calm」</p>
+        <p class="abs brand__meaning">：“plenty（満ちる）”と“nu（素の／無垢な）”を
+     掛け合わせた造語。
+
+：穏やかさや落ち着きを意味し、肌にやさしく
+    洗い上げるという特徴を表現。 </p>
+      </div>
+    </section>
+
+    <!-- ===== Voices ===== -->
+    <section class="section voices bg-paper" aria-label="モニターの方々の声">
+      <div class="stage">
+        <h2 class="abs voices__title"><span class="fs38">Plenu calm</span>を使用していただいた モニターの方々の声</h2>
+        <div class="abs voices__bg"></div>
+        <ul>
+          <li class="abs voice voice--1">
+            <img class="voice__img cover-img" src="/images/voice-1.webp" width="720" height="480" alt="" loading="lazy" />
+            <p class="voice__title">「肌ざわりがやさしくて驚きました！」</p>
+            <p class="voice__text">敏感肌でもチクチクせず、<br />家族みんなで安心して使えています。</p>
+          </li>
+          <li class="abs voice voice--2">
+            <img class="voice__img cover-img" src="/images/voice-2.webp" width="720" height="540" alt="" loading="lazy" />
+            <p class="voice__title">「香りが控えめでちょうどいい」</p>
+            <p class="voice__text">強すぎず、洗いたての清潔感が心地よいです。<br />部屋干しでも気にならない！</p>
+          </li>
+          <li class="abs voice voice--3">
+            <img class="voice__img cover-img" src="/images/voice-3.webp" width="720" height="540" alt="" loading="lazy" />
+            <p class="voice__title">「お気に入りの洋服が長持ち」</p>
+            <p class="voice__text">繊細な素材の服も傷まず、<br />毎回ていねいに洗えている実感があります。</p>
+          </li>
+          <li class="abs voice voice--4">
+            <img class="voice__img cover-img" src="/images/voice-4.webp" width="720" height="540" alt="" loading="lazy" />
+            <p class="voice__title">「洗濯が楽しみになりました。」</p>
+            <p class="voice__text">ボトルのデザインも素敵で、<br />ランドリースペースがすっきり見えます。</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== CTA 3 ===== -->
+    <section class="section cta cta--3" aria-label="ご購入">
+      <div class="stage">
+        <div class="abs cta__veil"></div>
+        <img class="abs cta__bottle" src="/images/bottle.webp" width="182" height="328" alt="Plenu calm のボトル" loading="lazy" />
+        <p class="abs cta__tagline">大切な衣類を<br />丁寧に扱いたい人へ</p>
+        <p class="abs cta__logo">Plenu calm</p>
+        <p class="abs cta__kana">プレニュー カーム</p>
+        <a class="abs cta__btn" href="/purchase.html">ご購入はこちら</a>
+      </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="section faq bg-paper" aria-label="よくある質問">
+      <div class="stage">
+        <h2 class="abs section-title faq__title">よくある質問</h2>
+        <ul class="faq__list js-faq">
+          <li class="faq__item">
+            <p class="faq__text" id="faq-1">Q1,赤ちゃんや敏感肌でも本当に使えますか？
+A,はい。問題なくご使用いただけます。</p>
+            <button class="faq__toggle" type="button" aria-expanded="false" aria-controls="faq-1">▽</button>
+          </li>
+          <li class="faq__item">
+            <p class="faq__text" id="faq-2">Q2. 無添加だけど、しっかり汚れは落ちますか？
+A,はい。Plenu calmは無添加処方でも、しっかりと汚れを落とせる洗浄力を備えています。
+植物由来の洗浄成分を使用し、毎日の皮脂汚れやニオイまできちんとオフ。
+肌への刺激をおさえながら、大切な衣類を清潔に保ちます。</p>
+            <button class="faq__toggle" type="button" aria-expanded="false" aria-controls="faq-2">▽</button>
+          </li>
+          <li class="faq__item">
+            <p class="faq__text" id="faq-3">Q3. 香りはありますか？
+A,肌にすっとなじむ、ほのかなせっけんの香りです。</p>
+            <button class="faq__toggle" type="button" aria-expanded="false" aria-controls="faq-3">▽</button>
+          </li>
+          <li class="faq__item">
+            <p class="faq__text" id="faq-4">Q4. 洗濯機と手洗い、どちらにも使えますか？
+A,はい。どちらにもご使用いただけます。</p>
+            <button class="faq__toggle" type="button" aria-expanded="false" aria-controls="faq-4">▽</button>
+          </li>
+          <li class="faq__item">
+            <p class="faq__text" id="faq-5">Q5. 1回の洗濯にどれくらい使えばいいですか？
+A,洗濯物30Lに対し、約20mlが使用目安です。
+詳しくは商品裏面をご覧ください。</p>
+            <button class="faq__toggle" type="button" aria-expanded="false" aria-controls="faq-5">▽</button>
+          </li>
+          <li class="faq__item">
+            <p class="faq__text" id="faq-6">Q6. 色柄ものやおしゃれ着にも使えますか？
+A,はい。問題なくご使用いただけます。</p>
+            <button class="faq__toggle" type="button" aria-expanded="false" aria-controls="faq-6">▽</button>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p class="site-footer__logo">Plenu carm</p>
+    <p class="site-footer__copy">Copy right © 2025plenu calm</p>
+  </footer>
+</body>
+</html>
