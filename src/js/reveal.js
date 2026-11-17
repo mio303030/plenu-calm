@@ -6,7 +6,7 @@
  * - 素早いスクロールで画面を通り過ぎた要素も、見えないまま残らないよう表示する
  */
 const TARGETS = [
-  '.concept__text > p',
+  '.concept__p7', // コンセプトの本文：自然なフェードイン
   '.machine__img',
   '.cta__tagline', '.cta__logo', '.cta__kana', '.cta__btn',
   '.question__woman', '.question__bubble', '.question__text',
@@ -19,6 +19,10 @@ const TARGETS = [
   '.faq__item',
 ];
 
+// テキストリビール：行の枠（.tx-line）ごとに、中のテキストを下からせり上げる
+// ※枠の外に隠れた要素は IntersectionObserver で「見えない」と判定されるため、枠の方を監視する
+const LINE_TARGETS = ['.concept .tx-line'];
+
 // 商品画像：控えめなスライドアップ
 const PRODUCT_TARGETS = ['.cta__bottle'];
 
@@ -30,8 +34,10 @@ export function initReveal() {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   const product = document.querySelectorAll(PRODUCT_TARGETS.join(','));
-  const elements = [...document.querySelectorAll(TARGETS.join(',')), ...product];
+  const lines = document.querySelectorAll(LINE_TARGETS.join(','));
+  const elements = [...document.querySelectorAll(TARGETS.join(',')), ...product, ...lines];
   product.forEach((el) => el.classList.add('reveal--up'));
+  lines.forEach((el) => el.classList.add('reveal--line'));
 
   const pending = new Set(elements);
 
@@ -42,7 +48,7 @@ export function initReveal() {
     observer.unobserve(el);
     // アニメーション終了後に後片付け（最長1.2秒＋遅延）
     setTimeout(() => {
-      el.classList.remove('reveal', 'reveal--up', 'is-visible');
+      el.classList.remove('reveal', 'reveal--up', 'reveal--line', 'is-visible');
       el.style.removeProperty('--reveal-delay');
     }, (delay + 1.4) * 1000);
   };

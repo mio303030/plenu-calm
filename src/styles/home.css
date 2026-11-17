@@ -674,3 +674,15 @@
   text-decoration: underline;
   cursor: pointer;
 }
+
+/* ---------- テキストリビール用の行枠（共通） ----------
+   .tx-line が1行分の切り抜き枠、.tx-inner が中で動くテキスト。
+   どちらもブロックにして、行の高さ・文字位置は元の <br> 区切りと同じになる */
+.tx-line {
+  display: block;
+  overflow: hidden;
+}
+
+.tx-inner {
+  display: block;
+}
