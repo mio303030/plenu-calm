@@ -65,9 +65,9 @@
     opacity: 0;
   }
 
-  .js .hero::after { transform: scale(1.15); }
+  .js .hero__bg { transform: scale(1.15); }
 
-  .js.is-ready .hero::after   { animation: hero-zoom-out 2.6s var(--ease-out) both; }
+  .js.is-ready .hero__bg     { animation: hero-zoom-out 2.6s var(--ease-out) both; }
   .js.is-ready .hero__catch-1 { animation: line-up 0.9s var(--ease-out) 0.2s both; }
   .js.is-ready .hero__catch-2 { animation: line-up 0.9s var(--ease-out) 0.45s both; }
   .js.is-ready .hero__bottle  { animation: float-up 1.3s var(--ease-out) 0.7s both; }
@@ -86,6 +86,12 @@
       translate 0.9s cubic-bezier(0.2, 0.7, 0.3, 1) var(--reveal-delay, 0s);
   }
 
+
+  /* 準備中（reveal.js が非表示の状態を付けている間）はトランジションを止める */
+  .reveal-setup .reveal,
+  .reveal-setup .reveal > .tx-inner {
+    transition: none !important;
+  }
 
   .js .reveal.is-visible {
     opacity: 1;

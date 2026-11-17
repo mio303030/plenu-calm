@@ -43,10 +43,33 @@ export function initReveal() {
   if (!('IntersectionObserver' in window)) return;
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  const lines = document.querySelectorAll(LINE_TARGETS.join(','));
-  const masks = [...document.querySelectorAll(MASK_TARGETS.join(','))];
-  const cards = [...document.querySelectorAll(CARD_TARGETS.join(','))];
-  const elements = [...document.querySelectorAll(TARGETS.join(',')), ...lines, ...masks, ...cards];
+  // ページの途中で再読み込み・「戻る」をした時は、ブラウザがスクロール位置を復元するまで待つ。
+  // 復元先で既に見えている要素（と、それより上の要素）は演出の対象から外し、表示したままにする
+  // → 一度表示された内容が消えて、もう一度現れる「ちらつき」を防ぐ
+  const nav = performance.getEntriesByType?.('navigation')[0];
+  const restoring = nav && (nav.type === 'reload' || nav.type === 'back_forward');
+  if (!restoring) {
+    setup(false);
+    return;
+  }
+  const run = () => requestAnimationFrame(() => setup(window.scrollY > 0));
+  if (document.readyState === 'complete') run();
+  else window.addEventListener('load', run, { once: true });
+}
+
+/** 画面に入っているか、既に通り過ぎた要素（表示幅で非表示の要素は除く） */
+const isInOrAboveView = (el) => el.getClientRects().length > 0 && el.getBoundingClientRect().top < window.innerHeight;
+
+function setup(keepVisible) {
+  const notShown = (el) => !(keepVisible && isInOrAboveView(el));
+  const lines = [...document.querySelectorAll(LINE_TARGETS.join(','))].filter(notShown);
+  const masks = [...document.querySelectorAll(MASK_TARGETS.join(','))].filter(notShown);
+  const cards = [...document.querySelectorAll(CARD_TARGETS.join(','))].filter(notShown);
+  const elements = [...[...document.querySelectorAll(TARGETS.join(','))].filter(notShown), ...lines, ...masks, ...cards];
+
+  // 非表示の状態はトランジションなしで一瞬で付ける（表示→非表示へ動いて見えないように）
+  const root = document.documentElement;
+  root.classList.add('reveal-setup');
   lines.forEach((el) => el.classList.add('reveal--line'));
   masks.forEach((el) => el.classList.add('reveal--mask'));
   // 並び順の奇数枚目＝左列、偶数枚目＝右列（スマホではCSS側で下からに切り替える）
@@ -83,10 +106,7 @@ export function initReveal() {
     { rootMargin: '0px 0px -12% 0px' },
   );
 
-  elements.forEach((el) => {
-    el.classList.add('reveal');
-    observer.observe(el);
-  });
+  elements.forEach((el) => el.classList.add('reveal'));
 
   // 写真の登場方向（PCとスマホで配置が変わるため、画面幅の切り替え時にも決め直す）
   const setMaskDirections = () => {
@@ -129,8 +149,15 @@ export function initReveal() {
       requestAnimationFrame(showPassed);
     }
   };
-  window.addEventListener('scroll', onScroll, { passive: true });
-  showPassed();
+  // 非表示の状態が確定してから（2フレーム後）トランジションを戻し、監視を始める
+  requestAnimationFrame(() =>
+    requestAnimationFrame(() => {
+      root.classList.remove('reveal-setup');
+      elements.forEach((el) => observer.observe(el));
+      window.addEventListener('scroll', onScroll, { passive: true });
+      showPassed();
+    }),
+  );
 }
 
 /** ファーストビュー：フォントの読み込みを待ってから再生（最大1秒待つ） */

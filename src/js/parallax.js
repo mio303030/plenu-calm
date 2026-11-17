@@ -5,6 +5,7 @@
  * - 背景：ファーストビューの葉のテクスチャ、CTAの写真
  *   → 画像のはみ出し部分の中で「表示位置」だけを動かすので、
  *     枠からはみ出したり、文章・ボタンと重なったりしない
+ *   → transform で動かすため、スクロール中に再描画が起きない（GPUで合成するだけ）
  *   → セクションが画面の中央付近にある時に元の見え方と同じになる
  * - 前景：理由01の葉（グラスの写真）
  *   → 上下にPC 24px・スマホ 14pxだけ動かす（周りの文章との間隔より十分小さい）
@@ -12,12 +13,16 @@
  * - ⑤ 商品ボトル：CTAセクションの通過に合わせて浮かび上がる（下の BOTTLES 参照）
  *
  * 「視差効果を減らす」設定の環境では何もしない。
- * JavaScriptが無効の時はCSS変数が未設定のままなので、元の表示になる。
+ * JavaScriptが無効の時は transform が付かないので、元の表示になる。
  */
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
+
+// スマホのアドレスバーの表示・非表示（高さだけの変化）では位置の再計算をしない
+// → スクロール中の不要な再計算と、それによるカクつきを防ぐ
+ScrollTrigger.config({ ignoreMobileResize: true });
 
 // スクロールへの追従を少しだけ遅らせて、なめらかに見せる（秒）
 const SMOOTH = 0.5;
@@ -28,29 +33,38 @@ export function initParallax() {
   // 画面幅（PC/スマホ）が切り替わったら作り直す
   mm.add({ motion: '(prefers-reduced-motion: no-preference)', sp: '(max-width: 767px)' }, (context) => {
     if (!context.conditions.motion) return;
-    // 背景：ファーストビューの葉のテクスチャ（スクロールで画面外へ出るまでに10%分ずれる）
+    // 背景：ファーストビューの葉のテクスチャ（スクロールで画面外へ出るまでに、
+    // 画像のはみ出し分の10%だけ下へずらす = 以前の background-position 0%→10% と同じ動き）
+    // background-position ではなく transform で動かすので、スクロール中に再描画が起きない
     const hero = document.querySelector('.hero');
-    if (hero) {
+    const heroImg = document.querySelector('.hero__bg-img');
+    if (hero && heroImg) {
+      const overflow = () => Math.max(0, heroImg.offsetHeight - hero.querySelector('.hero__bg').offsetHeight);
       gsap.fromTo(
-        hero,
-        { '--hero-py': '0%' },
+        heroImg,
+        { yPercent: 0 },
         {
-          '--hero-py': '10%',
+          yPercent: () => (overflow() * 0.1 * 100) / heroImg.offsetHeight,
           ease: 'none',
-          scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: SMOOTH },
+          scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: SMOOTH, invalidateOnRefresh: true },
         },
       );
     }
 
-    // 背景：CTAの写真（画面に入ってから出るまでに、写真の下端側→上端側へ表示位置が移る）
+    // 背景：CTAの写真（画面に入ってから出るまでに、はみ出し分の上端側→下端側へ動く
+    // = 以前の background-position 100%→0% と同じ動き）。こちらも transform で動かす
     gsap.utils.toArray('.cta').forEach((section) => {
+      const bg = section.querySelector('.cta__bg-img');
+      if (!bg) return;
+      // 中央の位置から上下に動ける量（層の高さに対する%）
+      const range = () => (Math.max(0, bg.offsetHeight - section.offsetHeight) / 2 / bg.offsetHeight) * 100;
       gsap.fromTo(
-        section,
-        { '--cta-py': '50%' },
+        bg,
+        { yPercent: () => -range() },
         {
-          '--cta-py': '-50%',
+          yPercent: () => range(),
           ease: 'none',
-          scrollTrigger: { trigger: section, start: 'top bottom', end: 'bottom top', scrub: SMOOTH },
+          scrollTrigger: { trigger: section, start: 'top bottom', end: 'bottom top', scrub: SMOOTH, invalidateOnRefresh: true },
         },
       );
     });

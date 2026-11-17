@@ -13,9 +13,10 @@
   .hero { height: 316px; }
 
   .hero::before,
-  .hero::after { height: 293px; }
+  .hero__bg { height: 293px; }
 
-  .hero::after { background-size: cover; background-position: center calc(50% - var(--hero-py, 0%)); }
+  /* スマホは cover・上下中央（画像は縦長なので、幅いっぱいに敷いた時と同じ） */
+  .hero__bg-pos { top: 50%; translate: 0 -50%; }
 
   /* 8%の白いベール（Wixのモバイル版にある四角） */
   .hero .stage::before {

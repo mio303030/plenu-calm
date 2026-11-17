@@ -16,6 +16,9 @@
   <meta name="twitter:card" content="summary" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <!-- ファーストビュー背景の先読み：CSSを読み込んでから見つかる画像のため、HTMLの時点で取得を始める。
+       不透明度5%の背景なので優先度は低めにし、フォント・CSS・ボトル画像の読み込みを妨げない -->
+  <link rel="preload" as="image" href="/images/hero-bg.webp" type="image/webp" fetchpriority="low" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,900&family=K2D&family=Kodchasan&family=Luxurious+Script&family=Zen+Antique&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" />
@@ -59,6 +62,8 @@
   <main>
     <!-- ===== First view ===== -->
     <section class="section hero" aria-label="ファーストビュー">
+      <!-- 背景の葉のテクスチャ（切り抜き枠 ＞ 位置合わせ ＞ パララックスで動く画像 の3層） -->
+      <div class="hero__bg" aria-hidden="true"><div class="hero__bg-pos"><div class="hero__bg-img"></div></div></div>
       <div class="stage">
         <h1 class="abs hero__catch">
           <!-- 1行ずつ下から現れる演出のため、各行を「切り抜き用の枠」で包む -->
@@ -95,6 +100,7 @@
 
     <!-- ===== CTA 1 ===== -->
     <section class="section cta cta--1" aria-label="ご購入">
+      <div class="cta__bg" aria-hidden="true"><div class="cta__bg-img"></div></div>
       <div class="stage">
         <div class="abs cta__veil"></div>
         <img class="abs cta__bottle" src="/images/bottle.webp" width="182" height="328" alt="Plenu calm のボトル" loading="lazy" />
@@ -194,6 +200,7 @@
 
     <!-- ===== CTA 2 ===== -->
     <section class="section cta cta--2" aria-label="ご購入">
+      <div class="cta__bg" aria-hidden="true"><div class="cta__bg-img"></div></div>
       <div class="stage">
         <div class="abs cta__veil"></div>
         <img class="abs cta__bottle" src="/images/bottle.webp" width="182" height="328" alt="Plenu calm のボトル" loading="lazy" />
@@ -269,6 +276,7 @@
 
     <!-- ===== CTA 3 ===== -->
     <section class="section cta cta--3" aria-label="ご購入">
+      <div class="cta__bg" aria-hidden="true"><div class="cta__bg-img"></div></div>
       <div class="stage">
         <div class="abs cta__veil"></div>
         <img class="abs cta__bottle" src="/images/bottle.webp" width="182" height="328" alt="Plenu calm のボトル" loading="lazy" />
@@ -323,8 +331,8 @@ A,はい。問題なくご使用いただけます。</p>
   </main>
 
   <footer class="site-footer">
-    <p class="site-footer__logo">Plenu carm</p>
-    <p class="site-footer__copy">Copy right © 2025plenu calm</p>
+    <p class="site-footer__logo">Plenu calm</p>
+    <p class="site-footer__copy">Copyright © 2025plenu calm</p>
   </footer>
 </body>
 </html>
