@@ -110,6 +110,7 @@ src/styles/
 - Google Fonts（Bodoni Moda / Zen Antique / Zen Kaku Gothic New / Luxurious Script / Kodchasan / K2D）：SIL Open Font License。商用利用可
 - GSAP 3.15.0：3.13以降は商用利用も含め無料（GSAP Standard License）
 
-### 公開後に追加するもの
-- `og:image`（SNS共有時の画像）：絶対URLが必要なため、公開URLが決まってから `index.html` に追加する
+### 公開
+- 公開URL：https://plenu-calm.vercel.app/ （Vercel。GitHub の main に push すると自動で再公開）
+- SNS共有用の画像：`public/ogp.jpg`（1200×630。公開中のファーストビューを撮影したもの）
 - 検索エンジンに登録したい場合は、`index.html` と `purchase.html` の `<meta name="robots" content="noindex" />` を削除する
